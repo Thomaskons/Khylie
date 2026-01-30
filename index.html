@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Account Comparison - GBP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a192f, #111827);
+            color: #e2e8f0;
+            padding: 80px 20px;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+        .infographic {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            padding: 50px 35px;
+            max-width: 1350px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .crypto-ticker {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 10;
+        }
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 60px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .price-up { color: #4ade80; }
+        .price-down { color: #f87171; }
+        h1 {
+            font-weight: 700;
+            color: #cbd5e1;
+            text-align: center;
+            margin-bottom: 45px;
+            margin-top: 55px;
+            font-size: 2.8rem;
+        }
+        .assumptions {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .assumptions li {
+            color: #cbd5e1;
+        }
+        .account-card {
+            text-align: center;
+            border: none;
+            border-radius: 20px;
+            padding: 35px 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: cardEnter 1s ease-out forwards;
+        }
+        .account-card:nth-child(1) { animation-delay: 0.3s; }
+        .account-card:nth-child(2) { animation-delay: 0.6s; }
+        .account-card:nth-child(3) { animation-delay: 0.9s; }
+        @keyframes cardEnter {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .account-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .card-light {
+            background: linear-gradient(145deg, #f8fafc, #f1f5f9, #e2e8f0);
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+        }
+        .card-light .wallet-icon { color: #64748b; }
+        .card-medium {
+            background: linear-gradient(145deg, #e2e8f0, #cbd5e1, #94a3b8);
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+        }
+        .card-medium .wallet-icon { color: #475569; }
+        .card-dark {
+            background: linear-gradient(145deg, #1e293b, #334155, #475569);
+            color: #e2e8f0;
+            border: 1px solid #475569;
+        }
+        .card-dark .wallet-icon { color: #94a3b8; }
+        .card-dark .balance { color: #f1f5f9; }
+        .wallet-icon {
+            font-size: 3.8rem;
+            margin-bottom: 18px;
+        }
+        .balance {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin: 25px 0;
+            color: #1e293b;
+        }
+        .card-dark .balance { color: #f1f5f9; }
+        .item {
+            margin-bottom: 25px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            transition: all 0.3s ease;
+        }
+        .card-light .item { background: rgba(0,0,0,0.03); }
+        .card-medium .item { background: rgba(0,0,0,0.04); }
+        .card-dark .item { background: rgba(255,255,255,0.08); }
+        .item-value {
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        .profit {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+        .growth {
+            font-size: 2.2rem !important;
+            font-weight: 800;
+            color: #60a5fa;
+        }
+        .footer-note {
+            text-align: center;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 50px;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .balance { font-size: 2.8rem; }
+            .growth { font-size: 1.8rem !important; }
+            .item-value { font-size: 1.4rem; }
+            .infographic { padding: 35px 18px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="infographic">
+        <div class="crypto-ticker">
+            <div class="ticker-track">
+                <span class="ticker-item"><i class="bi bi-bitcoin"></i> BTC £61,200 <span class="price-down">-4.2%</span></span>
+                <span class="ticker-item"><i class="bi bi-currency-exchange"></i> ETH £2,100 <span class="price-up">+1.8%</span></span>
+                <span class="ticker-item"><i class="bi bi-shield-shaded"></i> XRP £1.32 <span class="price-down">-5.4%</span></span>
+                <!-- Duplicate more items if needed for smooth looping ticker effect -->
+            </div>
+        </div>
+        <h1>Scaling the Same Strategy with Different Account Sizes Khylie Raymond</h1>
+     
+        <div class="assumptions">
+            <ul>
+                <li><i class="bi bi-check-circle-fill text-info"></i> 20% of capital used per trade</li>
+                <li><i class="bi bi-check-circle-fill text-info"></i> 2% profit target per trade</li>
+                <li><i class="bi bi-check-circle-fill text-info"></i> Controlled risk (non-compounded)</li>
+                <li><i class="bi bi-check-circle-fill text-info"></i> 20 trading days per month</li>
+            </ul>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <!-- £10,000 Account -->
+            <div class="col-md-4">
+                <div class="account-card card-light">
+                    <i class="bi bi-wallet2 wallet-icon"></i>
+                    <div class="balance">£10,000</div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-arrow-repeat"></i> Trades per day</div>
+                        <div class="item-value">3</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-currency-pound"></i> Capital per trade</div>
+                        <div class="item-value">£2,000</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-graph-up-arrow"></i> Profit per trade</div>
+                        <div class="item-value profit">£40</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-sun"></i> Daily profit</div>
+                        <div class="item-value profit">£120</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-calendar3"></i> Monthly profit</div>
+                        <div class="item-value profit">£2,400</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-percent"></i> Monthly growth</div>
+                        <div class="item-value growth">24%</div>
+                    </div>
+                </div>
+            </div>
+            <!-- £25,000 Account -->
+            <div class="col-md-4">
+                <div class="account-card card-medium">
+                    <i class="bi bi-wallet2 wallet-icon"></i>
+                    <div class="balance">£25,000</div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-arrow-repeat"></i> Trades per day</div>
+                        <div class="item-value">4</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-currency-pound"></i> Capital per trade</div>
+                        <div class="item-value">£5,000</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-graph-up-arrow"></i> Profit per trade</div>
+                        <div class="item-value profit">£100</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-sun"></i> Daily profit</div>
+                        <div class="item-value profit">£400</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-calendar3"></i> Monthly profit</div>
+                        <div class="item-value profit">£8,000</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-percent"></i> Monthly growth</div>
+                        <div class="item-value growth">32%</div>
+                    </div>
+                </div>
+            </div>
+            <!-- £50,000 Account -->
+            <div class="col-md-4">
+                <div class="account-card card-dark">
+                    <i class="bi bi-wallet2 wallet-icon"></i>
+                    <div class="balance">£50,000</div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-arrow-repeat"></i> Trades per day</div>
+                        <div class="item-value">5</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-currency-pound"></i> Capital per trade</div>
+                        <div class="item-value">£10,000</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-graph-up-arrow"></i> Profit per trade</div>
+                        <div class="item-value profit">£200</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-sun"></i> Daily profit</div>
+                        <div class="item-value profit">£1,000</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-calendar3"></i> Monthly profit</div>
+                        <div class="item-value profit">£20,000</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-label"><i class="bi bi-percent"></i> Monthly growth</div>
+                        <div class="item-value growth">40%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-note">
+            All figures are estimates, not guarantees. Trading involves substantial risk.
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
